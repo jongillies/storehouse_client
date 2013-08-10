@@ -17,8 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = Dir['{test,spec,features}']
 
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'lorem'
   gem.add_development_dependency 'gemcutter'
+  gem.add_development_dependency 'dnsruby'
+  gem.add_development_dependency 'fog'
   gem.add_runtime_dependency 'rest-client'
   gem.add_runtime_dependency 'crack'
 
