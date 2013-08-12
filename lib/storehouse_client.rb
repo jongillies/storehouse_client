@@ -116,6 +116,7 @@ module StorehouseClient
     end
 
     def put(path, data)
+      tries ||= 3
       begin
         result = @resource[path].put data.to_json, content_type: :json, accept: :json
       rescue RestClient::Unauthorized => @error
@@ -124,18 +125,25 @@ module StorehouseClient
         return nil
       rescue RestClient::ResourceNotFound => @error
         return nil
+      rescue Errno::ECONNREFUSED => @error
+        sleep 2
+        retry unless (tries -= 1).zero?
       end
 
       parse_result result
     end
 
     def get(path)
+      tries ||= 3
       begin
         result = @resource[path].get content_type: :json, accept: :json
       rescue RestClient::Unauthorized => @error
         return nil
       rescue RestClient::ResourceNotFound => @error
         return nil
+      rescue Errno::ECONNREFUSED => @error
+        sleep 2
+        retry unless (tries -= 1).zero?
       end
 
       parse_result result
