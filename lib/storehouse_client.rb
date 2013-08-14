@@ -33,7 +33,7 @@ module StorehouseClient
     end
 
     def data_sources
-      get ("data_sources.json?auth_token=#{@auth_token}")
+      get ("data_sources?auth_token=#{@auth_token}")
     end
 
     def start_run(data_source_id)

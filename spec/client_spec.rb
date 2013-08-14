@@ -60,8 +60,8 @@ end
 describe 'Loading data_sources' do
 
   it 'should load the data sources' do
-    sc = StorehouseClient::API.new(url: 'http://localhost:3000', auth_token: 'z0000000000000000000')
-    sc.data_sources.count.should eq(4)
+    sc = StorehouseClient::API.new(url: 'http://localhost:3000/api/1', auth_token: 'z0000000000000000000')
+    sc.data_sources['count'].should eq(4)
   end
 
 end
