@@ -7,7 +7,6 @@ require 'digest'
 
 module StorehouseClient
 
-
   class API
 
     YAML::ENGINE.yamler = 'syck'
